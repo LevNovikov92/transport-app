@@ -1,0 +1,1 @@
+include ':app', ':system-lifecycle', ':feature-map'

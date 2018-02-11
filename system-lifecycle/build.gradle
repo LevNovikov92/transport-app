@@ -1,0 +1,25 @@
+apply plugin: 'com.android.library'
+android androidConfiguration
+
+dependencies {
+    implementation libs.rxJava
+    implementation libs.rxAndroid
+    implementation libs.dagger
+    implementation libs.appcompatV7
+    implementation libs.constraintLayout
+
+    compileOnly libs.autovalue
+}
+
+dependencies {
+    annotationProcessor libs.daggerCompiler
+    annotationProcessor libs.autovalue
+    annotationProcessor aptLibs.parcel
+}
+
+dependencies {
+    testImplementation testLibs.jUnit
+    testImplementation testLibs.mockito
+    testImplementation testLibs.mockito_inline
+    testImplementation testLibs.mockitoKotlin
+}

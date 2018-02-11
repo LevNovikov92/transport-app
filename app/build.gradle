@@ -1,0 +1,32 @@
+apply plugin: 'com.android.application'
+android androidConfiguration
+
+dependencies {
+    implementation libs.appcompatV7
+    implementation libs.constraintLayout
+    implementation libs.recyclerView
+    implementation libs.appcompatV7
+    implementation libs.rxJava
+    implementation libs.rxAndroid
+    implementation libs.dagger
+    implementation libs.map
+    compileOnly libs.autovalue
+}
+
+dependencies {
+    annotationProcessor aptLibs.parcel
+    annotationProcessor libs.autovalue
+    annotationProcessor aptLibs.databinding
+    annotationProcessor libs.daggerCompiler
+}
+
+dependencies {
+    implementation project(":system-lifecycle")
+}
+
+dependencies {
+    testImplementation testLibs.jUnit
+    testImplementation testLibs.mockito
+    testImplementation testLibs.mockito_inline
+    testImplementation testLibs.mockitoKotlin
+}
