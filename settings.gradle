@@ -1,1 +1,1 @@
-include ':app', ':system-lifecycle', ':feature-map'
+include ':app', ':system-lifecycle', ':feature-map', ':system-common'

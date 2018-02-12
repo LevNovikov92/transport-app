@@ -21,7 +21,9 @@ dependencies {
 }
 
 dependencies {
+    implementation project(":feature-map")
     implementation project(":system-lifecycle")
+    implementation project(":system-common")
 }
 
 dependencies {

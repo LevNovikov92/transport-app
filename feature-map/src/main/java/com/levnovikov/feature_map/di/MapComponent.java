@@ -16,6 +16,8 @@ import dagger.Provides;
 @Component(dependencies = MapDependency.class, modules = MapComponent.MapModule.class)
 public interface MapComponent {
 
+    void inject(MapView mapView);
+
     @Module
     class MapModule {
         private final MapView view;

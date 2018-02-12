@@ -6,8 +6,6 @@ dependencies {
     implementation libs.rxAndroid
     implementation libs.dagger
     implementation libs.appcompatV7
-    implementation libs.constraintLayout
-    implementation libs.map
 
     compileOnly libs.autovalue
 }
@@ -19,8 +17,7 @@ dependencies {
 }
 
 dependencies {
-    implementation project(":system-lifecycle")
-    implementation project(":system-common")
+
 }
 
 dependencies {

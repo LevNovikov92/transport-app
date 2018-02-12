@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.levnovikov.feature_map.MapView;
 import com.levnovikov.transport_app.main.di.MainScope;
 
 import javax.inject.Inject;
@@ -14,7 +15,7 @@ import javax.inject.Inject;
  */
 
 @MainScope
-public class MainNavigator {
+class MainNavigator {
 
     private final ViewGroup container;
     private final LayoutInflater inflater;
@@ -26,14 +27,14 @@ public class MainNavigator {
     }
 
     void attachMap() {
-
+        container.addView(createView(MapView.layout));
     }
 
     void attachPrebooking() {
 
     }
 
-    <V extends View> V createView(Class<V> vClass) {
-        inflater.inflate();
+    private View createView(int resId) {
+        return inflater.inflate(resId, container, false);
     }
 }

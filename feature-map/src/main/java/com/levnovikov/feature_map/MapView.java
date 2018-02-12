@@ -8,6 +8,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.levnovikov.feature_map.di.DaggerMapComponent;
 import com.levnovikov.feature_map.di.MapComponent;
 import com.levnovikov.feature_map.di.MapDependency;
+import com.levnovikov.system_common.ComponentProvider;
 import com.levnovikov.system_lifecycle.activity.ALifecycle;
 
 import javax.inject.Inject;
@@ -37,6 +38,8 @@ public class MapView extends com.google.android.gms.maps.MapView implements OnMa
     @Inject
     ALifecycle lifecycle;
 
+    public static final int layout = R.layout.map_view;
+
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -46,8 +49,9 @@ public class MapView extends com.google.android.gms.maps.MapView implements OnMa
 
     private void setupDI() {
         MapComponent component = DaggerMapComponent.builder()
-                .mapDependency(((MapDependency) getParent()))
+                .mapDependency((MapDependency) ((ComponentProvider) getContext()).component())
                 .build();
+        component.inject(this);
     }
 
     private void initMap() {

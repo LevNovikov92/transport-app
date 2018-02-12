@@ -1,15 +1,18 @@
 package com.levnovikov.transport_app.main.di;
 
-import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.levnovikov.feature_map.di.MapDependency;
 import com.levnovikov.system_lifecycle.activity.ALifecycle;
 import com.levnovikov.system_lifecycle.activity.LifecycleActivity;
 import com.levnovikov.transport_app.di.AppComponent;
+import com.levnovikov.system_common.Interactor;
 import com.levnovikov.transport_app.main.MainActivity;
+import com.levnovikov.transport_app.main.MainInteractor;
 
+import dagger.Binds;
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.Module;
@@ -22,30 +25,39 @@ import dagger.Provides;
 
 @MainScope
 @Component(dependencies = AppComponent.class, modules = MainComponent.MainModule.class)
-public interface MainComponent {
+public interface MainComponent extends MapDependency {
 
-    @Module
+    void inject(MainActivity mainActivity);
+
+    @Module(includes = MainBinders.class)
     class MainModule {
 
         @MainScope
         @Provides
-        Context provideContext(LifecycleActivity activity) {
-            return activity;
+        LayoutInflater provideInflater(LifecycleActivity activity) {
+            return activity.getLayoutInflater();
         }
+    }
 
-        @MainScope
-        @Provides
-        ALifecycle provideActivityLifecycle(LifecycleActivity activity) {
-            return activity;
-        }
+    @Module
+    interface MainBinders {
+        @Binds
+        Context provideContext(LifecycleActivity activity);
+
+        @Binds
+        ALifecycle provideActivityLifecycle(LifecycleActivity activity);
+
+        @Binds
+        Interactor provideInteractor(MainInteractor interactor);
     }
 
     @Component.Builder
     interface Builder {
         @BindsInstance
         Builder bindContext(LifecycleActivity activity);
-        Builder appComponent(AppComponent component);
+        @BindsInstance
         Builder container(ViewGroup container);
+        Builder appComponent(AppComponent component);
         MainComponent build();
     }
 }
