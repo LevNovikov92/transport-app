@@ -22,12 +22,12 @@ public class MainActivity extends LifecycleActivity implements ComponentProvider
     private MainComponent component;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
         ViewGroup container = findViewById(R.id.container);
         setupDI(container);
         interactor.onGetActive();
+        super.onCreate(savedInstanceState);
     }
 
     private void setupDI(ViewGroup container) {

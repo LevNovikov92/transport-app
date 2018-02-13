@@ -25,14 +25,17 @@ public class MapView extends com.google.android.gms.maps.MapView implements OnMa
 
     public MapView(Context context) {
         super(context);
+        setupView();
     }
 
     public MapView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
+        setupView();
     }
 
     public MapView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
+        setupView();
     }
 
     @Inject
@@ -40,11 +43,14 @@ public class MapView extends com.google.android.gms.maps.MapView implements OnMa
 
     public static final int layout = R.layout.map_view;
 
+    void setupView() {
+        setupDI();
+        initMap();
+    }
+
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        setupDI();
-        initMap();
     }
 
     private void setupDI() {
