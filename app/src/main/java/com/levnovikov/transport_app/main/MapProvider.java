@@ -1,4 +1,4 @@
-package com.levnovikov.feature_map;
+package com.levnovikov.transport_app.main;
 
 import com.google.android.gms.maps.GoogleMap;
 

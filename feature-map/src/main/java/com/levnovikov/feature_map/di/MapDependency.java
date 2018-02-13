@@ -1,5 +1,6 @@
 package com.levnovikov.feature_map.di;
 
+import com.levnovikov.feature_map.MapSetter;
 import com.levnovikov.system_lifecycle.activity.ALifecycle;
 
 /**
@@ -9,5 +10,6 @@ import com.levnovikov.system_lifecycle.activity.ALifecycle;
 
 public interface MapDependency {
 
+    MapSetter mapSetter();
     ALifecycle lifecycle();
 }

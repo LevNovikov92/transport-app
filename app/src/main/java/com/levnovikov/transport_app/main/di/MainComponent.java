@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.levnovikov.feature_map.MapSetter;
 import com.levnovikov.feature_map.di.MapDependency;
 import com.levnovikov.system_lifecycle.activity.ALifecycle;
 import com.levnovikov.system_lifecycle.activity.LifecycleActivity;
@@ -11,6 +12,7 @@ import com.levnovikov.transport_app.di.AppComponent;
 import com.levnovikov.system_common.Interactor;
 import com.levnovikov.transport_app.main.MainActivity;
 import com.levnovikov.transport_app.main.MainInteractor;
+import com.levnovikov.transport_app.main.MapProvider;
 
 import dagger.Binds;
 import dagger.BindsInstance;
@@ -49,6 +51,12 @@ public interface MainComponent extends MapDependency {
 
         @Binds
         Interactor provideInteractor(MainInteractor interactor);
+
+        @Binds
+        MapSetter provideMapSetter(MainInteractor interactor);
+
+        @Binds
+        MapProvider provideMapProvider(MainInteractor interactor);
     }
 
     @Component.Builder

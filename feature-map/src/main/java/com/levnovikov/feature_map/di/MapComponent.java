@@ -1,11 +1,9 @@
 package com.levnovikov.feature_map.di;
 
-import com.levnovikov.feature_map.MapProvider;
 import com.levnovikov.feature_map.MapView;
 
 import dagger.Component;
 import dagger.Module;
-import dagger.Provides;
 
 /**
  * Author: lev.novikov
@@ -24,11 +22,6 @@ public interface MapComponent {
 
         MapModule(MapView view) {
             this.view = view;
-        }
-
-        @Provides
-        MapProvider provideMapProvider() {
-            return view;
         }
     }
 }

@@ -13,15 +13,12 @@ import com.levnovikov.system_lifecycle.activity.ALifecycle;
 
 import javax.inject.Inject;
 
-import io.reactivex.Single;
-import io.reactivex.subjects.SingleSubject;
-
 /**
  * Author: lev.novikov
  * Date: 11/2/18.
  */
 
-public class MapView extends com.google.android.gms.maps.MapView implements OnMapReadyCallback, MapProvider {
+public class MapView extends com.google.android.gms.maps.MapView implements OnMapReadyCallback {
 
     public MapView(Context context) {
         super(context);
@@ -40,6 +37,9 @@ public class MapView extends com.google.android.gms.maps.MapView implements OnMa
 
     @Inject
     ALifecycle lifecycle;
+
+    @Inject
+    MapSetter mapSetter;
 
     public static final int layout = R.layout.map_view;
 
@@ -83,13 +83,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements OnMa
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        subject.onSuccess(googleMap);
+        mapSetter.setMap(googleMap);
     }
 
-    private SingleSubject<GoogleMap> subject = SingleSubject.create();
-
-    @Override
-    public Single<GoogleMap> getMap() {
-        return subject;
-    }
 }
